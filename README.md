@@ -31,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/a-responsive-result-page-with-animation-using-reactjs-and-tailwincss-2wfI6Ro3JX)
+- Live Site URL: [Add live site URL here](https://results-summary-component-ten-eta.vercel.app/)
 
 ## My process
 
