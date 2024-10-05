@@ -1,101 +1,70 @@
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import './globals.css';
+import CountUp from 'react-countup';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showResult, setShowResult] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const summaryItems = [
+    { name: 'Reaction', score: 80, icon: '/icon-reaction.svg', color: 'text-light-red', bgColor: 'bg-light-red/10' },
+    { name: 'Memory', score: 92, icon: '/icon-memory.svg', color: 'text-orangey-yellow', bgColor: 'bg-orangey-yellow/10' },
+    { name: 'Verbal', score: 61, icon: '/icon-verbal.svg', color: 'text-green-teal', bgColor: 'bg-green-teal/10' },
+    { name: 'Visual', score: 72, icon: '/icon-visual.svg', color: 'text-cobalt-blue', bgColor: 'bg-cobalt-blue/10' },
+  ]
+
+
+  return (
+    <div className='min-h-screen bg-pale-blue flex flex-col items-center justify-center md:p-4'>
+      <div className="bg-white md:rounded-3xl shadow-lg overflow-hidden max-w-[375px] md:max-w-[768px] w-full flex flex-col md:flex-row">
+        {/* Result */}
+        <div className='bg-gradient-background text-white p-8 md:w-1/2 w-[375px] rounded-b-3xl md:rounded-3xl flex flex-col justify-center items-center text-center'>
+          <h2 className='text-xl font-bold text-light-lavender mb-6'>Your Result</h2>
+          <div className='bg-gradient-circle rounded-full w-40 h-40 flex flex-col items-center justify-center mb-6'>
+            <span className='text-6xl font-extrabold'>
+              <CountUp
+                start={0}
+                end={76}
+                duration={2}
+                separator=','
+                onEnd={() => setShowResult(true)}
+              />
+            </span>
+            <span className='text-light-lavender'>of 100</span>
+          </div>
+          <div className={`transition-all duration-1000 ease-in-out ${showResult ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h3 className='text-2xl font-bold mb-2'>Great</h3>
+            <p className='text-[16px] font-extralight text-light-lavender px-7'>You scored higher than 65% of the people who have taken these tests.</p>
+          </div>
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Summary */}
+        <div className='p-8 md:w-1/2 w-[375px]'>
+          <h2 className='text-2xl font-bold mb-6 text-dark-gray-blue'>Summary</h2>
+          <div className='space-y-4'>
+            {summaryItems.map((item) => (
+              <div key={item.name} className={`flex items-center justify-between p-4 rounded-lg ${item.bgColor}`}>
+                <div className='flex items-center'>
+                  <img className='mr-2' src={item.icon} alt={item.name} />
+                  <span className={`font-medium ${item.color}`}>{item.name}</span>
+                </div>
+                <div>
+                  <CountUp
+                    className='font-bold text-dark-gray-blue'
+                    start={0}
+                    end={item.score}
+                    duration={2}
+                    separator=','
+                  />
+                  <span className='text-light-lavender'> / 100</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className='w-full bg-dark-gray-blue text-white rounded-full p-3 mt-6 text-[16px] font-medium hover:bg-gradient-background'>Continue</button>
+        </div>
+      </div>
+      <footer className='text-sm text-center mt-4'>Challenge by Frontend Mentor. Coded by <a href='https://www.frontendmentor.io/profile/erath-rise' className='text-blue-500'>Lianne</a>.</footer>
     </div>
   );
 }
